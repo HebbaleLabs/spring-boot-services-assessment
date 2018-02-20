@@ -60,7 +60,7 @@ public class CustomerServiceTests {
     // given
     Customer customer1 = new Customer("Sita");
     customer1 = entityManager.persistFlushFind(customer1);
-    Customer customer2 = new Customer("Sita");
+    Customer customer2 = new Customer("Shyam");
     customer2 = entityManager.persistFlushFind(customer2);
 
     // when
@@ -71,7 +71,7 @@ public class CustomerServiceTests {
         .isEqualTo(2);
     assertThat(actualCustomers.get(0).getFullName())
         .isEqualTo(customer1.getFullName());
-    assertThat(actualCustomers.get(0).getFullName())
+    assertThat(actualCustomers.get(1).getFullName())
         .isEqualTo(customer2.getFullName());
   }
 
