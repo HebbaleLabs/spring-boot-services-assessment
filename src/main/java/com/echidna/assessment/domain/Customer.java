@@ -1,5 +1,7 @@
 package com.echidna.assessment.domain;
 
+import java.util.Objects;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -34,6 +36,24 @@ public class Customer {
 
   public void setFullName(String fullName) {
     this.fullName = fullName;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Customer customer = (Customer) o;
+    return Objects.equals(fullName, customer.fullName);
+  }
+
+  @Override
+  public int hashCode() {
+
+    return Objects.hash(fullName);
   }
 
   @Override
