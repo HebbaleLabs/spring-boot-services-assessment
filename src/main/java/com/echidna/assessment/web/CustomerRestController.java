@@ -24,7 +24,7 @@ public class CustomerRestController {
   private CustomerService customerService;
 
   @RequestMapping("/customers")
-  List<Customer> listAllAuthors(@RequestParam(value="name", required = false) String matchesName) {
+  List<Customer> listAllCustomers(@RequestParam(value="name", required = false) String matchesName) {
     if (matchesName != null && matchesName.length() > 0) {
       return customerService.getCustomersMatchingFullName(matchesName);
     } else {
