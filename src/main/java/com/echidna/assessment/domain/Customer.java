@@ -2,10 +2,12 @@ package com.echidna.assessment.domain;
 
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Customer {
@@ -14,12 +16,17 @@ public class Customer {
   @GeneratedValue(strategy= GenerationType.AUTO)
   private Long id;
   private String fullName;
+  private Integer age;
+  private Long salary;
+  private Long creditScore;
 
   public Customer() {
   }
 
-  public Customer(String fullName) {
+  public Customer(String fullName, Integer age, Long salary) {
     this.fullName = fullName;
+    this.age = age;
+    this.salary = salary;
   }
 
   public Long getId() {
@@ -36,6 +43,30 @@ public class Customer {
 
   public void setFullName(String fullName) {
     this.fullName = fullName;
+  }
+
+  public Integer getAge() {
+    return age;
+  }
+
+  public void setAge(Integer age) {
+    this.age = age;
+  }
+
+  public Long getSalary() {
+    return salary;
+  }
+
+  public void setSalary(Long salary) {
+    this.salary = salary;
+  }
+
+  public Long getCreditScore() {
+    return creditScore;
+  }
+
+  public void setCreditScore(Long creditScore) {
+    this.creditScore = creditScore;
   }
 
   @Override

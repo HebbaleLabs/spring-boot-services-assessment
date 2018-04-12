@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.echidna.assessment.domain.Customer;
 import com.echidna.assessment.service.CustomerService;
+import com.echidna.assessment.service.CustomerNotFoundException;
 
 @RestController
 @EnableAutoConfiguration
@@ -43,9 +44,29 @@ public class CustomerRestController {
   }
 
   @RequestMapping(value = "/customers", method = RequestMethod.POST)
-  ResponseEntity<Customer> create(@RequestBody Customer customer) {
+  ResponseEntity<?> create(@RequestBody Customer customer) {
     customer = customerService.create(customer);
     return new ResponseEntity<>(customer, HttpStatus.OK);
+  }
+
+  @RequestMapping(value = "/customers/{customerId}", method = RequestMethod.PUT)
+  ResponseEntity<?> update(@PathVariable Long customerId, @RequestBody Customer customer) {
+    try {
+      customer = customerService.update(customerId, customer);
+      return new ResponseEntity<>(customer, HttpStatus.OK);
+    } catch (CustomerNotFoundException e) {
+      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+  }
+
+  @RequestMapping(value = "/customers/{customerId}", method = RequestMethod.DELETE)
+  ResponseEntity<?> delete(@PathVariable Long customerId) {
+    try {
+      customerService.delete(customerId);
+      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    } catch (CustomerNotFoundException e) {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
   }
 
 }
