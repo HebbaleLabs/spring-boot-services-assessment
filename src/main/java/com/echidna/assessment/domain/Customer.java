@@ -18,7 +18,6 @@ public class Customer {
   private String fullName;
   private Integer age;
   private Long salary;
-  private Long creditScore;
 
   public Customer() {
   }
@@ -59,14 +58,6 @@ public class Customer {
 
   public void setSalary(Long salary) {
     this.salary = salary;
-  }
-
-  public Long getCreditScore() {
-    return creditScore;
-  }
-
-  public void setCreditScore(Long creditScore) {
-    this.creditScore = creditScore;
   }
 
   @Override
